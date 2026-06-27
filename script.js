@@ -7,14 +7,19 @@ function setTheme(mode) {
   } else if (mode === "dark") {
     body.classList.add("dark");
   }
-  // "system" = on enlève toutes les classes (CSS par défaut sombre)
+  // "system" = on ne met rien, le CSS par défaut + media query s'en occupe
   
   localStorage.setItem("theme", mode);
   
-  // Mise à jour visuelle des boutons
+  // Mise à jour du bouton actif
   document.querySelectorAll(".theme-btn").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.theme === mode);
   });
+}
+
+// Détecte le thème système
+function getSystemTheme() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,7 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
     setTheme("system");
   }
   
-  // Attacher les clics
+  // Écoute les changements de thème système en temps réel
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (localStorage.getItem("theme") === "system") {
+      setTheme("system");
+    }
+  });
+  
+  // Boutons
   document.querySelectorAll(".theme-btn").forEach(btn => {
     btn.addEventListener("click", () => setTheme(btn.dataset.theme));
   });
