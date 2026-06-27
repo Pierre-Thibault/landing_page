@@ -5,18 +5,32 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  color: #e2e8f0;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: #1f2937;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
+/* Thème système sombre */
+@media (prefers-color-scheme: dark) {
+  body:not(.light):not(.dark) {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: #e2e8f0;
+  }
+}
+
 /* Thème clair */
 body.light {
   background: linear-gradient(135deg, #3b82f6, #60a5fa);
   color: #1f2937;
+}
+
+/* Thème sombre */
+body.dark {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #e2e8f0;
 }
 
 .theme-selector,
