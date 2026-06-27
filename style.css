@@ -77,6 +77,11 @@ body {
   transition: all 0.3s;
 }
 
+.theme-selector button:hover,
+.lang-selector button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .theme-selector button.active,
 .lang-selector button.active {
   background: var(--surface);
