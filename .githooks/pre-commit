@@ -1,0 +1,3 @@
+#!/bin/sh
+sed -i "s|<lastmod>.*</lastmod>|<lastmod>$(date +%F)</lastmod>|" sitemap.xml
+git add sitemap.xml
