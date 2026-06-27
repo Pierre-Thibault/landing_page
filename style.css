@@ -8,23 +8,27 @@
   /* Thème clair (défaut) */
   --bg: linear-gradient(135deg, #3b82f6, var(--accent));
   --text: #1f2937;
+  --link-hover: rgba(255, 255, 255, 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: linear-gradient(135deg, #0f172a, #1e3a8a);
     --text: #e2e8f0;
+    --link-hover: var(--surface);
   }
 }
 
 body.light {
   --bg: linear-gradient(135deg, #3b82f6, var(--accent));
   --text: #1f2937;
+  --link-hover: rgba(255, 255, 255, 0.3);
 }
 
 body.dark {
   --bg: linear-gradient(135deg, #0f172a, #1e3a8a);
   --text: #e2e8f0;
+  --link-hover: var(--surface);
 }
 
 body {
@@ -67,7 +71,7 @@ body {
   border: 3px solid transparent;
   border-radius: var(--radius-pill);
   background: transparent;
-  color: var(--text);
+  color: white;
   cursor: pointer;
   font-size: .8rem;
   transition: all 0.3s;
@@ -110,7 +114,7 @@ a {
   justify-content: center;
   gap: 12px;
   background: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: var(--text);
   text-decoration: none;
   padding: 16px 32px;
   border-radius: var(--radius-pill);
@@ -119,8 +123,8 @@ a {
 }
 
 a:hover {
-  background: var(--surface);
-  color: white;
+  background: var(--link-hover);
+  color: var(--text);
   transform: translateY(-3px);
 }
 
