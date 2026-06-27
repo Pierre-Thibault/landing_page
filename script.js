@@ -1,43 +1,34 @@
 function setTheme(mode) {
   const body = document.body;
-  body.classList.remove("light");
+  body.classList.remove("light", "dark");
   
   if (mode === "light") {
     body.classList.add("light");
+  } else if (mode === "dark") {
+    body.classList.add("dark");
   }
+  // "system" = on enlève toutes les classes (CSS par défaut sombre)
   
   localStorage.setItem("theme", mode);
-}
-
-function switchLang(lang) {
-  if (lang === 'fr') {
-    window.location.href = '../fr/index.html';
-  } else {
-    window.location.href = '../en/index.html';
-  }
+  
+  // Mise à jour visuelle des boutons
+  document.querySelectorAll(".theme-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.theme === mode);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("theme");
-  if (saved === "light") {
-    setTheme("light");
+  const savedTheme = localStorage.getItem("theme");
+  
+  if (savedTheme) {
+    setTheme(savedTheme);
+  } else {
+    // Par défaut : suivre le système
+    setTheme("system");
   }
   
-  // Active state pour thème
+  // Attacher les clics
   document.querySelectorAll(".theme-btn").forEach(btn => {
-    if (btn.dataset.theme === saved) btn.classList.add("active");
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".theme-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      setTheme(btn.dataset.theme);
-    });
-  });
-  
-  // Active state pour langue
-  document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    });
+    btn.addEventListener("click", () => setTheme(btn.dataset.theme));
   });
 });
