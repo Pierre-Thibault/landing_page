@@ -114,7 +114,7 @@ p {
   align-items: center;
 }
 
-a {
+.links a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +128,7 @@ a {
   width: 300px;
 }
 
-a:hover {
+.links a:hover {
   background: var(--link-hover);
   color: var(--text);
   transform: translateY(-3px);
